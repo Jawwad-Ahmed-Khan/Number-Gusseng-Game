@@ -1,15 +1,16 @@
 import inquirer from "inquirer";
-let Random_number = Math.ceil(1.0);
-console.log(`Seil Random number:${Random_number}`);
+async function Number_Take() {
+    const { guess } = await inquirer.prompt([{ message: "Guess The Number Between 1-10:", type: "number", name: "guess" }]);
+    return guess;
+}
+let Random_number;
 while (1) {
     Random_number = Math.floor(Math.random() * 10) + 1;
-    console.log(`Random number:${Random_number}`);
-    let guess = await inquirer.prompt([{ message: "Enter My gues", type: "number", name: "guess" }]);
-    if (guess.guess === Random_number) {
-        console.log("You Win");
+    if (Random_number === await Number_Take()) {
+        console.log("You Guess right number");
         break;
     }
     else {
-        console.log("Try again");
+        console.log("You Guess wrong number please Try Again");
     }
 }
